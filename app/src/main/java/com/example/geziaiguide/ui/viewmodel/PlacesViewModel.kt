@@ -3,35 +3,39 @@ package com.example.geziaiguide.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.geziaiguide.data.model.Place
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.example.geziaiguide.data.repository.PlacesRepository
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-// დროებით ამოვიღეთ კონსტრუქტორიდან რეპოზიტორია, რომ MainActivity-მ ჩვეულებრივად შექმნას
-class PlacesViewModel : ViewModel() {
+class PlacesViewModel(private val repository: PlacesRepository) : ViewModel() {
 
-    private val _placesList = MutableStateFlow<List<Place>>(emptyList())
-    val placesList: StateFlow<List<Place>> = _placesList.asStateFlow()
-
-    init {
-        loadDummyPlaces()
-    }
-
-    private fun loadDummyPlaces() {
-        // პირდაპირ ვაწვდით ადგილებს, ბაზის გარეშე, რომ 1 წამში აღარ გამოირთოს!
-        _placesList.value = listOf(
-            Place(id = 1, title = "Tbilisi Old Town", region = "Tbilisi", description = "Historic district with sulfur baths and narrow streets.", rating = 4.8, isBookmarked = false, imageUrl = ""),
-            Place(id = 2, title = "Kazbegi - Gergeti", region = "Mtskheta-Mtianeti", description = "Iconic Trinity Church under Mount Kazbek.", rating = 4.9, isBookmarked = false, imageUrl = ""),
-            Place(id = 3, title = "Mestia & Ushguli", region = "Samegrelo-Zemo Svaneti", description = "Ancient defensive towers and Caucasus mountains.", rating = 5.0, isBookmarked = false, imageUrl = "")
-        )
-    }
+    // Flow-ს გარდაქმნა StateFlow-ში, რომ UI-მ ყოველთვის აქტუალური მონაცემები ნახოს
+    val placesList: StateFlow<List<Place>> = repository.allPlaces
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     fun toggleBookmark(place: Place) {
         viewModelScope.launch {
-            // დროებითი ბუკმარკის ლოგიკა კოდშივე, ბაზის გარეშე
-            _placesList.value = _placesList.value.map {
-                if (it.id == place.id) it.copy(isBookmarked = !it.isBookmarked) else it
+            repository.updateBookmark(place.id, !place.isBookmarked)
+        }
+    }
+
+    // თავდაპირველი მონაცემების შევსება, თუ ბაზა ცარიელია
+    fun seedDatabase() {
+        viewModelScope.launch {
+            // ვიყენებთ first()-ს რომ რეალურად შევამოწმოთ ბაზის მდგომარეობა
+            val currentPlaces = repository.allPlaces.first()
+            if (currentPlaces.isEmpty()) {
+                val dummyPlaces = listOf(
+                    Place(1, "Old Tbilisi", "Tbilisi", "Sulfur baths and narrow streets.", "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800", 4.8),
+                    Place(2, "Gergeti Trinity", "Kazbegi", "Church under Mount Kazbek.", "https://images.unsplash.com/photo-1527269534026-c86f4009eace?auto=format&fit=crop&w=800", 4.9),
+                    Place(3, "Ushguli", "Svaneti", "Highest inhabited village in Europe.", "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800", 5.0),
+                    Place(4, "Batumi Boulevard", "Adjara", "Modern seaside city.", "https://images.unsplash.com/photo-1612371534015-7790b0798e8f?auto=format&fit=crop&w=800", 4.7),
+                    Place(5, "Martvili Canyon", "Samegrelo", "Turquoise water and waterfalls.", "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800", 4.9)
+                )
+                dummyPlaces.forEach { repository.insertPlace(it) }
             }
         }
     }
