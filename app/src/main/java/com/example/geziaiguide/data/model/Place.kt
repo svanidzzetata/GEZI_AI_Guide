@@ -11,5 +11,7 @@ data class Place(
     val description: String,
     val imageUrl: String,
     val rating: Double,
+    val latitude: Double = 41.7151, // Default to Tbilisi coordinates
+    val longitude: Double = 44.8271,
     val isBookmarked: Boolean = false
 )

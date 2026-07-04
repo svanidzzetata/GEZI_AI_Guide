@@ -71,6 +71,10 @@ dependencies {
     implementation(libs.lottie.compose)
     implementation(libs.coil.compose)
 
+    // Maps
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -14,6 +14,8 @@ ksp = "2.0.21-1.0.27"
 retrofit = "2.11.0"
 lottie = "6.4.0"
 coil = "2.6.0"
+googleMapsCompose = "6.1.2"
+playServicesMaps = "19.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +40,8 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+maps-compose = { group = "com.google.maps.android", name = "maps-compose", version.ref = "googleMapsCompose" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version = "0.9.0" }
 
 [plugins]

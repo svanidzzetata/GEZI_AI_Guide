@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.geziaiguide.data.model.Place
 
-@Database(entities = [Place::class], version = 1, exportSchema = false)
+@Database(entities = [Place::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun placeDao(): PlaceDao
 
@@ -20,7 +20,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "geziai_database"
-                ).build()
+                )
+                .fallbackToDestructiveMigration() // Simplified for the exam project
+                .build()
                 INSTANCE = instance
                 instance
             }
