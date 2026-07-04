@@ -1,50 +1,51 @@
 # 🗺️ Gezi AI Guide - AI Tourist Assistant App
 
-**Gezi AI Guide** არის უახლესი თაობის მობილური აპლიკაცია (Android / Jetpack Compose), რომელიც მოგზაურებს სთავაზობს პერსონალიზებულ, რეალურ დროში გენერირებულ ტურისტულ მარშრუტებს საქართველოში ხელოვნური ინტელექტის (Google Gemini AI) დახმარებით. აპლიკაცია აერთიანებს თანამედროვე UI/UX სტანდარტებს, ლოკალურ მონაცემთა ბაზებს, ინტერაქტიულ რუკებსა და მრავალენოვან მხარდაჭერას, რაც მას სრულყოფილ კომერციულ პროდუქტად აქცევს.
+**Gezi AI Guide** is a next-generation mobile application built using Android and Jetpack Compose. It leverages the power of Google Gemini AI to provide travelers with personalized, real-time itineraries for exploring Georgia. The app seamlessly integrates modern UI/UX standards, local caching, interactive maps, and complete localization, making it a production-ready, high-quality digital product.
 
 ---
 
-## 🚀 ძირითადი ფუნქციონალი (Features)
+## 🚀 Core Features
 
-* **🤖 Gemini AI პერსონალური გიდი:** ინტეგრირებული Google Gemini AI SDK, რომელიც აანალიზებს მომხმარებლის ლოკაციას, ინტერესებს და აგენერირებს ოპტიმალურ ტურისტულ გეგმებს.
-* **🗺️ Google Maps-ის ინტეგრაცია:** ინტერაქტიული რუკა, სადაც მომხმარებელს შეუძლია რეალურ დროში დაინახოს ისტორიული ძეგლები, კულტურული ობიექტები და ბუნებრივი ღირსშესანიშნაობები.
-* **📊 მომხმარებლის პრემიუმ დეშბორდი (Profile Dashboard):** * **ამინდის ვიჯეტი (Live Weather Widget):** თბილისისა და სხვა ქალაქების მიმდინარე ამინდის ავტომატური ჩვენება.
-    * **სტატისტიკის პანელი:** გენერირებული მარშრუტების, შენახული ადგილების, მოგზაურობის დღეებისა და AI-სთან საუბრების დეტალური ანალიტიკა.
-    * **მარშრუტების ქრონოლოგია (Recommended Itineraries):** ვიზუალური ვერტიკალური Timeline ქარდები (მაგ. *Old Tbilisi Heritage Walk*, *Caucasus Mountain Escape*), სადაც თითოეულ ლოკაციას ახლავს სამუშაო საათები, ფოტო და აღწერა.
-* **🌓 Dark Mode (მუქი თემა):** სრული UI/UX ადაპტაცია როგორც დღის (Light), ისე ღამის (Dark) რეჟიმისთვის, რაც უზრუნველყოფს კომფორტულ ნავიგაციას ნებისმიერ განათებაზე.
-* **🌐 მრავალენოვანი მხარდაჭერა (Localization):** სრული ორენოვანი ინტეგრაცია (**ქართული 🇬🇪 და ინგლისური 🇬🇧**). აპლიკაცია ავტომატურად ერგება სისტემურ ენას ან იცვლება პარამეტრებიდან.
-* **📦 ლოკალური ქეშირება (Room Database):** ადგილების და მარშრუტების შენახვა მოწყობილობის შიდა მეხსიერებაში ხაზგარეშე (Offline) რეჟიმში მუშაობისთვის.
-
----
-
-## 🛠️ ტექნოლოგიური სტეკი (Tech Stack)
-
-* **ენა:** Kotlin (100%)
-* **UI ჩარჩო:** Jetpack Compose (Declarative UI)
-* **არქიტექტურა:** MVVM (Model-View-ViewModel) + Clean Architecture-ის პრინციპები
-* **ხელოვნური ინტელექტი:** Google Generative AI SDK (Gemini API)
-* **მონაცემთა ბაზა:** Room DB (SQLite აბსტრაქცია ქეშირებისთვის)
-* **ქსელი & API:** Retrofit 2 & Gson (ამინდისა და გარე მონაცემების მისაღებად)
-* **ნავიგაცია:** Jetpack Compose Navigation Component
-* **ასინქრონული კოდი:** Kotlin Coroutines & Flow
-* **Dependency Management:** Gradle Kotlin DSL (`.kts`) ვერსიების კატალოგით (`libs.versions.toml`)
+* **🤖 Gemini AI Personal Guide:** Embedded with the Google Gemini AI SDK to analyze user preferences, current location, and generate highly customized travel plans.
+* **🗺️ Interactive Google Maps:** Built-in map integration allowing users to explore historical sites, cultural landmarks, and natural wonders in real-time.
+* **📊 Premium Profile Dashboard:**
+    * **Live Weather Widget:** Displays real-time weather updates (e.g., current conditions in Tbilisi) directly inside the profile page.
+    * **Analytics Grid:** Tracks generated routes, saved places, remaining trip days, and active AI chat counts.
+    * **Recommended Itineraries:** Beautiful vertical timeline cards (e.g., *Old Tbilisi Heritage Walk*, *Caucasus Mountain Escape*) complete with venue hours, photos, and descriptions.
+* **🌓 Full Dark Mode Support:** Completely adaptive UI/UX designed for both Light and Dark modes to ensure comfortable navigation under any lighting conditions.
+* **🌐 Multilingual Localization:** Seamless dual-language support for **Georgian 🇬🇪 and English 🇬🇧**, automatically matching the system language or user preferences.
+* **📦 Offline Caching (Room Database):** Saves popular destinations and generated itineraries locally to ensure seamless access even without an internet connection.
 
 ---
 
-## 📂 პროექტის სტრუქტურა (Project Structure)
+## 🛠️ Tech Stack
+
+* **Language:** Kotlin (100%)
+* **UI Framework:** Jetpack Compose (Declarative UI)
+* **Architecture:** MVVM (Model-View-ViewModel) + Clean Architecture Principles
+* **Artificial Intelligence:** Google Generative AI SDK (Gemini API)
+* **Local Database:** Room DB (SQLite abstraction layer for offline caching)
+* **Networking & API:** Retrofit 2 & Gson (for weather and remote travel data fetching)
+* **Navigation:** Jetpack Compose Navigation Component
+* **Asynchronous Execution:** Kotlin Coroutines & Flow
+* **Dependency Management:** Gradle Kotlin DSL (`.kts`) via Version Catalogs (`libs.versions.toml`)
+
+---
+
+## 📂 Project Structure
 
 ```text
 com.example.geziaiguide/
 │
-├── data/                 # მონაცემების ფენა (Repositories, Room DB, Local/Remote Data Sources)
-│   ├── local/            # Room Database, Entity-ები და DAO
-│   └── remote/           # Retrofit API სერვისები და Gemini SDK
+├── data/                 # Data Layer (Repositories, Room DB, Local/Remote Data Sources)
+│   ├── local/            # Room Database Entities and DAOs
+│   └── remote/           # Retrofit API Interfaces and Gemini SDK Integration
 │
-├── ui/                   # ვიზუალური ფენა (Compose Screens, Components, Theme)
-│   ├── screens/          # ძირითადი ეკრანები (Home, Map, Profile/Dashboard, Places)
-│   ├── components/       # ხელახლა გამოყენებადი Compose ელემენტები (Timeline, WeatherCard)
-│   └── theme/            # Color.kt, Theme.kt (Dark/Light Mode), Type.kt
+├── ui/                   # Presentation Layer (Compose Screens, Custom Components, Theme)
+│   ├── screens/          # Core views (Home, Map, Profile/Dashboard, Places)
+│   ├── components/       # Reusable Compose elements (Timeline, WeatherCard)
+│   └── theme/            # Styling definitions: Color.kt, Theme.kt (Dark/Light), Type.kt
 │
-├── viewmodel/            # ბიზნეს ლოგიკა და UI State-ის მართვა (PlacesViewModel, ProfileViewModel)
+├── viewmodel/            # Business Logic & UI State Management (PlacesViewModel, ProfileViewModel)
 │
-└── MainActivity.kt       # აპლიკაციის მთავარი შესასვლელი წერტილი და Navigation Graph
+└── MainActivity.kt       # Application Entry Point & Navigation Graph Setup
