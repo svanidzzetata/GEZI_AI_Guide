@@ -1,46 +1,50 @@
-# Gezi AI Guide
+# 🗺️ Gezi AI Guide - AI Tourist Assistant App
 
-Gezi AI Guide is a modern Android application designed to help users explore beautiful places in Georgia. The app features an AI-powered travel assistant, a curated list of destinations, and a bookmarking system to save your favorite spots.
+**Gezi AI Guide** არის უახლესი თაობის მობილური აპლიკაცია (Android / Jetpack Compose), რომელიც მოგზაურებს სთავაზობს პერსონალიზებულ, რეალურ დროში გენერირებულ ტურისტულ მარშრუტებს საქართველოში ხელოვნური ინტელექტის (Google Gemini AI) დახმარებით. აპლიკაცია აერთიანებს თანამედროვე UI/UX სტანდარტებს, ლოკალურ მონაცემთა ბაზებს, ინტერაქტიულ რუკებსა და მრავალენოვან მხარდაჭერას, რაც მას სრულყოფილ კომერციულ პროდუქტად აქცევს.
 
-## Features
+---
 
--   **Explore Destinations**: Browse a curated list of famous places in Georgia with beautiful images and ratings.
--   **AI Travel Assistant**: Chat with a Google Gemini-powered AI to get travel tips, history, and recommendations.
--   **Favorites**: Bookmark your favorite places for quick access later.
--   **Interactive UI**: Smooth animations using Lottie and a modern Material 3 design.
--   **Persistent Storage**: Uses Room database to store places and bookmark states locally.
+## 🚀 ძირითადი ფუნქციონალი (Features)
 
-## Architecture & Tech Stack
+* **🤖 Gemini AI პერსონალური გიდი:** ინტეგრირებული Google Gemini AI SDK, რომელიც აანალიზებს მომხმარებლის ლოკაციას, ინტერესებს და აგენერირებს ოპტიმალურ ტურისტულ გეგმებს.
+* **🗺️ Google Maps-ის ინტეგრაცია:** ინტერაქტიული რუკა, სადაც მომხმარებელს შეუძლია რეალურ დროში დაინახოს ისტორიული ძეგლები, კულტურული ობიექტები და ბუნებრივი ღირსშესანიშნაობები.
+* **📊 მომხმარებლის პრემიუმ დეშბორდი (Profile Dashboard):** * **ამინდის ვიჯეტი (Live Weather Widget):** თბილისისა და სხვა ქალაქების მიმდინარე ამინდის ავტომატური ჩვენება.
+    * **სტატისტიკის პანელი:** გენერირებული მარშრუტების, შენახული ადგილების, მოგზაურობის დღეებისა და AI-სთან საუბრების დეტალური ანალიტიკა.
+    * **მარშრუტების ქრონოლოგია (Recommended Itineraries):** ვიზუალური ვერტიკალური Timeline ქარდები (მაგ. *Old Tbilisi Heritage Walk*, *Caucasus Mountain Escape*), სადაც თითოეულ ლოკაციას ახლავს სამუშაო საათები, ფოტო და აღწერა.
+* **🌓 Dark Mode (მუქი თემა):** სრული UI/UX ადაპტაცია როგორც დღის (Light), ისე ღამის (Dark) რეჟიმისთვის, რაც უზრუნველყოფს კომფორტულ ნავიგაციას ნებისმიერ განათებაზე.
+* **🌐 მრავალენოვანი მხარდაჭერა (Localization):** სრული ორენოვანი ინტეგრაცია (**ქართული 🇬🇪 და ინგლისური 🇬🇧**). აპლიკაცია ავტომატურად ერგება სისტემურ ენას ან იცვლება პარამეტრებიდან.
+* **📦 ლოკალური ქეშირება (Room Database):** ადგილების და მარშრუტების შენახვა მოწყობილობის შიდა მეხსიერებაში ხაზგარეშე (Offline) რეჟიმში მუშაობისთვის.
 
-The app follows modern Android development practices and the **MVVM (Model-View-ViewModel)** architectural pattern.
+---
 
--   **UI Framework**: Jetpack Compose (100% Kotlin, no XML layouts).
--   **Architecture**: MVVM with Clean Architecture principles.
--   **Dependency Injection**: ViewModel Factories are used for manual DI.
--   **Networking**: Retrofit & Google Generative AI SDK (Gemini).
--   **Database**: Room Persistence Library for local data.
--   **Image Loading**: Coil (Compose Image Loader).
--   **Animations**: Lottie for interactive loading states.
--   **Language**: Kotlin.
+## 🛠️ ტექნოლოგიური სტეკი (Tech Stack)
 
-## Screens
+* **ენა:** Kotlin (100%)
+* **UI ჩარჩო:** Jetpack Compose (Declarative UI)
+* **არქიტექტურა:** MVVM (Model-View-ViewModel) + Clean Architecture-ის პრინციპები
+* **ხელოვნური ინტელექტი:** Google Generative AI SDK (Gemini API)
+* **მონაცემთა ბაზა:** Room DB (SQLite აბსტრაქცია ქეშირებისთვის)
+* **ქსელი & API:** Retrofit 2 & Gson (ამინდისა და გარე მონაცემების მისაღებად)
+* **ნავიგაცია:** Jetpack Compose Navigation Component
+* **ასინქრონული კოდი:** Kotlin Coroutines & Flow
+* **Dependency Management:** Gradle Kotlin DSL (`.kts`) ვერსიების კატალოგით (`libs.versions.toml`)
 
-1.  **Places Screen**: A list of must-visit destinations in Georgia.
-2.  **Favorites Screen**: A dedicated space for your bookmarked locations.
-3.  **AI Chat Screen**: An interactive chat interface where users can ask questions about Georgian travel.
+---
 
-## Prerequisites
+## 📂 პროექტის სტრუქტურა (Project Structure)
 
--   Android Studio Koala or newer.
--   JDK 21.
--   An active internet connection for the AI features.
-
-## Setup
-
-1.  Clone the repository.
-2.  Open the project in Android Studio.
-3.  Ensure the `local.properties` file contains your Gemini API key (if applicable/required by current implementation).
-4.  Build and run the app on an emulator or a physical device.
-
-## Final Exam Note
-This project was developed as a final exam project for the Mobile App Development course, demonstrating proficiency in Jetpack Compose, MVVM, and Room database integration.
+```text
+com.example.geziaiguide/
+│
+├── data/                 # მონაცემების ფენა (Repositories, Room DB, Local/Remote Data Sources)
+│   ├── local/            # Room Database, Entity-ები და DAO
+│   └── remote/           # Retrofit API სერვისები და Gemini SDK
+│
+├── ui/                   # ვიზუალური ფენა (Compose Screens, Components, Theme)
+│   ├── screens/          # ძირითადი ეკრანები (Home, Map, Profile/Dashboard, Places)
+│   ├── components/       # ხელახლა გამოყენებადი Compose ელემენტები (Timeline, WeatherCard)
+│   └── theme/            # Color.kt, Theme.kt (Dark/Light Mode), Type.kt
+│
+├── viewmodel/            # ბიზნეს ლოგიკა და UI State-ის მართვა (PlacesViewModel, ProfileViewModel)
+│
+└── MainActivity.kt       # აპლიკაციის მთავარი შესასვლელი წერტილი და Navigation Graph
