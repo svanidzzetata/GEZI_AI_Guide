@@ -19,7 +19,12 @@ import com.example.geziaiguide.ui.viewmodel.ChatViewModel
 import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
 
 @Composable
-fun MainContainer(placesViewModel: PlacesViewModel, chatViewModel: ChatViewModel) {
+fun MainContainer(
+    placesViewModel: PlacesViewModel, 
+    chatViewModel: ChatViewModel,
+    isDarkMode: Boolean,
+    onThemeToggle: () -> Unit
+) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination?.route
@@ -65,12 +70,17 @@ fun MainContainer(placesViewModel: PlacesViewModel, chatViewModel: ChatViewModel
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("discover") {
-                PlacesScreen(placesViewModel, onChatClick = {
-                    navController.navigate("chat") {
-                        launchSingleTop = true
-                        restoreState = true
+                PlacesScreen(
+                    viewModel = placesViewModel, 
+                    isDarkMode = isDarkMode,
+                    onThemeToggle = onThemeToggle,
+                    onChatClick = {
+                        navController.navigate("chat") {
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
-                })
+                )
             }
             composable("map") {
                 MapScreen(placesViewModel)

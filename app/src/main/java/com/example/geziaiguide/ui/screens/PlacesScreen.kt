@@ -9,6 +9,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Star
@@ -32,7 +34,12 @@ import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PlacesScreen(viewModel: PlacesViewModel, onChatClick: () -> Unit) {
+fun PlacesScreen(
+    viewModel: PlacesViewModel, 
+    isDarkMode: Boolean,
+    onThemeToggle: () -> Unit,
+    onChatClick: () -> Unit
+) {
     val places by viewModel.placesList.collectAsState()
 
     Scaffold(
@@ -49,6 +56,14 @@ fun PlacesScreen(viewModel: PlacesViewModel, onChatClick: () -> Unit) {
                             "Discover Georgia's wonders", 
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = onThemeToggle) {
+                        Icon(
+                            imageVector = if (isDarkMode) Icons.Default.LightMode else Icons.Default.DarkMode,
+                            contentDescription = "Toggle Theme"
                         )
                     }
                 },
