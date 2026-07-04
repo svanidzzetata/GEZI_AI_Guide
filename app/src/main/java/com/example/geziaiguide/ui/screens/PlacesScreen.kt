@@ -38,7 +38,8 @@ fun PlacesScreen(
     viewModel: PlacesViewModel, 
     isDarkMode: Boolean,
     onThemeToggle: () -> Unit,
-    onChatClick: () -> Unit
+    onChatClick: () -> Unit,
+    onPlaceClick: (Int) -> Unit
 ) {
     val places by viewModel.placesList.collectAsState()
 
@@ -103,18 +104,22 @@ fun PlacesScreen(
                 )
             }
             items(places) { place ->
-                PlaceItem(place = place, onBookmarkClick = { viewModel.toggleBookmark(place) })
+                PlaceItem(
+                    place = place, 
+                    onBookmarkClick = { viewModel.toggleBookmark(place) },
+                    onClick = { onPlaceClick(place.id) }
+                )
             }
         }
     }
 }
 
 @Composable
-fun PlaceItem(place: Place, onBookmarkClick: () -> Unit) {
+fun PlaceItem(place: Place, onBookmarkClick: () -> Unit, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { /* Detail navigation could go here */ },
+            .clickable { onClick() },
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)

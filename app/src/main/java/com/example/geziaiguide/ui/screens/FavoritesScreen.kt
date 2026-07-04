@@ -18,7 +18,7 @@ import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavoritesScreen(viewModel: PlacesViewModel) {
+fun FavoritesScreen(viewModel: PlacesViewModel, onPlaceClick: (Int) -> Unit) {
     val places by viewModel.placesList.collectAsState()
     val favoritePlaces = places.filter { it.isBookmarked }
 
@@ -65,7 +65,11 @@ fun FavoritesScreen(viewModel: PlacesViewModel) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(favoritePlaces) { place ->
-                    PlaceItem(place = place, onBookmarkClick = { viewModel.toggleBookmark(place) })
+                    PlaceItem(
+                        place = place, 
+                        onBookmarkClick = { viewModel.toggleBookmark(place) },
+                        onClick = { onPlaceClick(place.id) }
+                    )
                 }
             }
         }

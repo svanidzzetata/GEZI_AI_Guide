@@ -13,5 +13,6 @@ data class Place(
     val rating: Double,
     val latitude: Double = 41.7151, // Default to Tbilisi coordinates
     val longitude: Double = 44.8271,
-    val isBookmarked: Boolean = false
+    val isBookmarked: Boolean = false,
+    val type: String = "Destination" // e.g., "Historical", "Restaurant", "Nature"
 )

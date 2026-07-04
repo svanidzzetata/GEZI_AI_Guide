@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Map
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Person
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -29,13 +31,13 @@ fun MainContainer(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination?.route
     
-    val items = listOf("Discover", "Map", "AI Guide", "Favorites")
-    val routes = listOf("discover", "map", "chat", "favorites")
+    val items = listOf("Discover", "Map", "AI Guide", "Profile")
+    val routes = listOf("discover", "map", "chat", "profile")
     val icons = listOf<ImageVector>(
         Icons.Filled.Explore,
         Icons.Filled.Map,
         Icons.Filled.AutoAwesome,
-        Icons.Filled.Favorite
+        Icons.Filled.Person
     )
 
     Scaffold(
@@ -79,7 +81,21 @@ fun MainContainer(
                             launchSingleTop = true
                             restoreState = true
                         }
+                    },
+                    onPlaceClick = { placeId ->
+                        navController.navigate("place_detail/$placeId")
                     }
+                )
+            }
+            composable(
+                route = "place_detail/{placeId}",
+                arguments = listOf(navArgument("placeId") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val placeId = backStackEntry.arguments?.getInt("placeId") ?: 0
+                PlaceDetailScreen(
+                    placeId = placeId,
+                    viewModel = placesViewModel,
+                    onBackClick = { navController.popBackStack() }
                 )
             }
             composable("map") {
@@ -90,8 +106,19 @@ fun MainContainer(
                     navController.popBackStack()
                 })
             }
-            composable("favorites") {
-                FavoritesScreen(placesViewModel)
+            composable("profile") {
+                ProfileScreen(
+                    viewModel = placesViewModel,
+                    onFavoritesClick = { navController.navigate("favorites_list") }
+                )
+            }
+            composable("favorites_list") {
+                FavoritesScreen(
+                    viewModel = placesViewModel,
+                    onPlaceClick = { placeId ->
+                        navController.navigate("place_detail/$placeId")
+                    }
+                )
             }
         }
     }

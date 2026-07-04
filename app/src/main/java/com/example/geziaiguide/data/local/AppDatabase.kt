@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.geziaiguide.data.model.Comment
 import com.example.geziaiguide.data.model.Place
 
-@Database(entities = [Place::class], version = 2, exportSchema = false)
+@Database(entities = [Place::class, Comment::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun placeDao(): PlaceDao
 
