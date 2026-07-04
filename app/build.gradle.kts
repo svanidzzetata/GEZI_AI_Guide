@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.geziaiguide"
-    compileSdk = 37 // ავიყვანეთ 37-ზე, როგორც გვთხოვს!
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.geziaiguide"
         minSdk = 24
-        targetSdk = 37 // ესეც ავწიოთ 37-ზე
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -20,10 +20,15 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
@@ -59,7 +64,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
-    // Room Database (სუფთა ვერსია)
+    // Room Database
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
