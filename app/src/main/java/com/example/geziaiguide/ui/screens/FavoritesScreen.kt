@@ -1,6 +1,5 @@
 package com.example.geziaiguide.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,10 +9,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.geziaiguide.R
 import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,7 +26,7 @@ fun FavoritesScreen(viewModel: PlacesViewModel, onPlaceClick: (Int) -> Unit) {
         topBar = {
             LargeTopAppBar(
                 title = { 
-                    Text("Saved Places", fontWeight = FontWeight.ExtraBold) 
+                    Text(stringResource(R.string.saved_places), fontWeight = FontWeight.ExtraBold) 
                 },
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
@@ -45,12 +45,12 @@ fun FavoritesScreen(viewModel: PlacesViewModel, onPlaceClick: (Int) -> Unit) {
                     Text("❤️", fontSize = 64.sp)
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        "No favorites yet", 
+                        stringResource(R.string.no_favorites_yet), 
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        "Start exploring and save places you love!",
+                        stringResource(R.string.start_exploring),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

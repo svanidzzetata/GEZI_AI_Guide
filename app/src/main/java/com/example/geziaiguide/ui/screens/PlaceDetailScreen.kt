@@ -22,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import androidx.compose.ui.res.stringResource
+import com.example.geziaiguide.R
 import com.example.geziaiguide.data.model.Comment
 import com.example.geziaiguide.data.model.Place
 import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
@@ -54,7 +56,7 @@ fun PlaceDetailScreen(
                         OutlinedTextField(
                             value = newCommentText,
                             onValueChange = { newCommentText = it },
-                            placeholder = { Text("Write a review...") },
+                            placeholder = { Text(stringResource(R.string.write_review)) },
                             modifier = Modifier.weight(1f),
                             shape = RoundedCornerShape(24.dp)
                         )
@@ -71,7 +73,7 @@ fun PlaceDetailScreen(
                                 containerColor = MaterialTheme.colorScheme.primary
                             )
                         ) {
-                            Icon(Icons.AutoMirrored.Filled.Send, contentDescription = "Send", tint = Color.White)
+                            Icon(Icons.AutoMirrored.Filled.Send, contentDescription = stringResource(R.string.send), tint = Color.White)
                         }
                     }
                 }
@@ -106,7 +108,7 @@ fun PlaceDetailScreen(
                                 .padding(16.dp)
                                 .background(Color.White.copy(alpha = 0.3f), CircleShape)
                         ) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back), tint = Color.White)
                         }
                         
                         Column(
@@ -141,7 +143,7 @@ fun PlaceDetailScreen(
                 item {
                     Column(modifier = Modifier.padding(24.dp)) {
                         Text(
-                            "About this place",
+                            stringResource(R.string.about_place),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold
                         )
@@ -158,7 +160,7 @@ fun PlaceDetailScreen(
                 item {
                     HorizontalDivider(modifier = Modifier.padding(horizontal = 24.dp))
                     Text(
-                        "Reviews (${comments.size})",
+                        stringResource(R.string.reviews_with_count, comments.size),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(24.dp)

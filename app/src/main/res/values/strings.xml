@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">Gezi AI Guide</string>
+    <string name="discover_wonders">Discover Georgia\'s wonders</string>
+    <string name="trending_destinations">Trending Destinations</string>
+    <string name="ask_ai_guide">Ask AI Guide</string>
+    <string name="travel_map">Travel Map</string>
+    <string name="explore_destinations">Explore Destinations</string>
+    <string name="my_profile">My Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="name_label">Name</string>
+    <string name="bio_label">Bio</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="explorer_level_pro">Explorer Level: Pro</string>
+    <string name="favorites">Favorites</string>
+    <string name="visited">Visited</string>
+    <string name="reviews">Reviews</string>
+    <string name="reviews_with_count">Reviews (%1$d)</string>
+    <string name="send">Send</string>
+    <string name="back">Back</string>
+    <string name="travel_stats">Travel Stats</string>
+    <string name="explored_percentage">65% of Georgia explored</string>
+    <string name="about_place">About this place</string>
+    <string name="write_review">Write a review...</string>
+    <string name="no_favorites_yet">No favorites yet</string>
+    <string name="start_exploring">Start exploring and save places you love!</string>
+    <string name="saved_places">Saved Places</string>
+    <string name="ai_thinking">AI is thinking...</string>
+    <string name="type_message">Type a message...</string>
+    <string name="online">Online</string>
+    <string name="toggle_theme">Toggle Theme</string>
+    <string name="favorite">Favorite</string>
+    <string name="edit_profile_desc">Edit Profile</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="default_bio">Passionate traveler and mountain lover. Exploring the hidden gems of Georgia one peak at a time. Always looking for the next adventure!</string>
+    <string name="default_user_name">Tamar Svanidze</string>
 </resources>

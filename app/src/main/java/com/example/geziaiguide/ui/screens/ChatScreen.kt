@@ -22,6 +22,9 @@ import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.*
 import com.example.geziaiguide.ui.viewmodel.ChatViewModel
 
+import androidx.compose.ui.res.stringResource
+import com.example.geziaiguide.R
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatScreen(viewModel: ChatViewModel, onBackClick: () -> Unit) {
@@ -41,13 +44,13 @@ fun ChatScreen(viewModel: ChatViewModel, onBackClick: () -> Unit) {
             CenterAlignedTopAppBar(
                 title = { 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("AI Travel Guide", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
-                        Text("Online", style = MaterialTheme.typography.labelSmall, color = Color(0xFF4CAF50))
+                        Text(stringResource(R.string.ask_ai_guide), fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+                        Text(stringResource(R.string.online), style = MaterialTheme.typography.labelSmall, color = Color(0xFF4CAF50))
                     }
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -101,7 +104,7 @@ fun ChatScreen(viewModel: ChatViewModel, onBackClick: () -> Unit) {
                         modifier = Modifier
                             .weight(1f)
                             .clip(RoundedCornerShape(28.dp)),
-                        placeholder = { Text("Ask anything about Georgia...") },
+                        placeholder = { Text(stringResource(R.string.type_message)) },
                         colors = TextFieldDefaults.colors(
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
@@ -121,7 +124,7 @@ fun ChatScreen(viewModel: ChatViewModel, onBackClick: () -> Unit) {
                         shape = CircleShape,
                         elevation = FloatingActionButtonDefaults.elevation(0.dp, 0.dp)
                     ) {
-                        Icon(Icons.AutoMirrored.Filled.Send, contentDescription = "Send", tint = Color.White)
+                        Icon(Icons.AutoMirrored.Filled.Send, contentDescription = stringResource(R.string.send), tint = Color.White)
                     }
                 }
             }
@@ -174,7 +177,7 @@ fun AIThinkingAnimation() {
             modifier = Modifier.size(40.dp)
         )
         Text(
-            "AI is thinking...",
+            stringResource(R.string.ai_thinking),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

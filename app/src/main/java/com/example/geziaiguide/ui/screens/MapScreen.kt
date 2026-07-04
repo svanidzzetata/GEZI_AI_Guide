@@ -22,9 +22,15 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 
+import androidx.compose.ui.res.stringResource
+import com.example.geziaiguide.R
+import com.google.android.gms.maps.model.MapStyleOptions
+import androidx.compose.ui.platform.LocalContext
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(viewModel: PlacesViewModel) {
+    val context = LocalContext.current
     val places by viewModel.placesList.collectAsState()
     val tbilisi = LatLng(41.7151, 44.8271)
     val cameraPositionState = rememberCameraPositionState {
@@ -33,10 +39,18 @@ fun MapScreen(viewModel: PlacesViewModel) {
     
     var selectedPlace by remember { mutableStateOf<Place?>(null) }
 
+    val mapStyleOptions = remember {
+        try {
+            MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Explore Destinations", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.explore_destinations), fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
                 )
@@ -49,6 +63,7 @@ fun MapScreen(viewModel: PlacesViewModel) {
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
                     isMyLocationEnabled = false,
+                    mapStyleOptions = mapStyleOptions
                 ),
                 uiSettings = MapUiSettings(
                     zoomControlsEnabled = false,

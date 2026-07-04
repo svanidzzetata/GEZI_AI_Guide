@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Gezi AI გიდი</string>
+    <string name="discover_wonders">აღმოაჩინე საქართველოს საოცრებები</string>
+    <string name="trending_destinations">პოპულარული მიმართულებები</string>
+    <string name="ask_ai_guide">ჰკითხე AI გიდს</string>
+    <string name="travel_map">მოგზაურობის რუკა</string>
+    <string name="explore_destinations">აღმოაჩინე ადგილები</string>
+    <string name="my_profile">ჩემი პროფილი</string>
+    <string name="edit_profile">პროფილის რედაქტირება</string>
+    <string name="name_label">სახელი</string>
+    <string name="bio_label">ბიოგრაფია</string>
+    <string name="save_changes">ცვლილებების შენახვა</string>
+    <string name="explorer_level_pro">მკვლევარის დონე: პრო</string>
+    <string name="favorites">ფავორიტები</string>
+    <string name="visited">ნანახი</string>
+    <string name="reviews">მიმოხილვები</string>
+    <string name="reviews_with_count">მიმოხილვები (%1$d)</string>
+    <string name="send">გაგზავნა</string>
+    <string name="back">უკან</string>
+    <string name="travel_stats">მოგზაურობის სტატისტიკა</string>
+    <string name="explored_percentage">საქართველოს 65% გამოკვლეულია</string>
+    <string name="about_place">ამ ადგილის შესახებ</string>
+    <string name="write_review">დაწერე მიმოხილვა...</string>
+    <string name="no_favorites_yet">ფავორიტები ჯერ არ გაქვს</string>
+    <string name="start_exploring">დაიწყე ძიება და შეინახე ადგილები, რომლებიც მოგეწონება!</string>
+    <string name="saved_places">შენახული ადგილები</string>
+    <string name="ai_thinking">AI ფიქრობს...</string>
+    <string name="type_message">ჩაწერეთ შეტყობინება...</string>
+    <string name="online">ხაზზეა</string>
+    <string name="toggle_theme">თემის შეცვლა</string>
+    <string name="favorite">ფავორიტი</string>
+    <string name="edit_profile_desc">პროფილის რედაქტირება</string>
+    <string name="profile_picture">პროფილის სურათი</string>
+    <string name="default_bio">მოგზაურობისა და მთების მოყვარული. ვეძებ საქართველოს დამალულ საგანძურს. ყოველთვის მზად ვარ ახალი თავგადასავლებისთვის!</string>
+    <string name="default_user_name">თამარ სვანიძე</string>
+</resources>

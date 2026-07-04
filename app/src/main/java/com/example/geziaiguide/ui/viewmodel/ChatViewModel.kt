@@ -15,10 +15,18 @@ class ChatViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
-    private val generativeModel = GenerativeModel(
-        modelName = "gemini-pro",
-        apiKey = "AIzaSyD_YOUR_KEY_HERE" // შეცვალეთ თქვენი რეალური გასაღებით
-    )
+    private var generativeModel: GenerativeModel? = null
+
+    init {
+        try {
+            generativeModel = GenerativeModel(
+                modelName = "gemini-pro",
+                apiKey = "AIzaSyD_YOUR_KEY_HERE"
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     fun sendMessage(userMessage: String) {
         if (userMessage.isBlank()) return
@@ -31,7 +39,8 @@ class ChatViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                val response = generativeModel.generateContent(userMessage)
+                val model = generativeModel ?: throw Exception("AI Model not initialized. Check your API Key.")
+                val response = model.generateContent(userMessage)
                 val updatedList = _chatHistory.value.toMutableList()
                 updatedList.add(Pair(response.text ?: "AI could not generate a response.", false))
                 _chatHistory.value = updatedList

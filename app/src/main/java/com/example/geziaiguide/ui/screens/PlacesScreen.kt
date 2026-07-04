@@ -29,6 +29,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import androidx.compose.ui.res.stringResource
+import com.example.geziaiguide.R
 import com.example.geziaiguide.data.model.Place
 import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
 
@@ -49,12 +51,12 @@ fun PlacesScreen(
                 title = { 
                     Column {
                         Text(
-                            "Gezi AI Guide", 
+                            stringResource(R.string.app_name), 
                             fontWeight = FontWeight.ExtraBold,
                             style = MaterialTheme.typography.headlineLarge
                         )
                         Text(
-                            "Discover Georgia's wonders", 
+                            stringResource(R.string.discover_wonders), 
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -64,7 +66,7 @@ fun PlacesScreen(
                     IconButton(onClick = onThemeToggle) {
                         Icon(
                             imageVector = if (isDarkMode) Icons.Default.LightMode else Icons.Default.DarkMode,
-                            contentDescription = "Toggle Theme"
+                            contentDescription = stringResource(R.string.toggle_theme)
                         )
                     }
                 },
@@ -84,32 +86,56 @@ fun PlacesScreen(
             ) {
                 Icon(Icons.Default.AutoAwesome, contentDescription = null)
                 Spacer(Modifier.width(8.dp))
-                Text("Ask AI Guide", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.ask_ai_guide), fontWeight = FontWeight.Bold)
             }
         }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            item {
-                Text(
-                    text = "Trending Destinations",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(vertical = 8.dp)
-                )
+        if (places.isEmpty()) {
+            ShimmerList(paddingValues)
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                item {
+                    Text(
+                        text = stringResource(R.string.trending_destinations),
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+                }
+                items(places) { place ->
+                    PlaceItem(
+                        place = place, 
+                        onBookmarkClick = { viewModel.toggleBookmark(place) },
+                        onClick = { onPlaceClick(place.id) }
+                    )
+                }
             }
-            items(places) { place ->
-                PlaceItem(
-                    place = place, 
-                    onBookmarkClick = { viewModel.toggleBookmark(place) },
-                    onClick = { onPlaceClick(place.id) }
-                )
-            }
+        }
+    }
+}
+
+@Composable
+fun ShimmerList(paddingValues: PaddingValues) {
+    Column(
+        modifier = Modifier
+            .padding(paddingValues)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        repeat(3) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(240.dp)
+                    .clip(RoundedCornerShape(24.dp))
+                    .background(Color.LightGray.copy(alpha = 0.3f))
+            )
         }
     }
 }
@@ -173,7 +199,7 @@ fun PlaceItem(place: Place, onBookmarkClick: () -> Unit, onClick: () -> Unit) {
                 ) {
                     Icon(
                         imageVector = if (place.isBookmarked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                        contentDescription = "Favorite",
+                        contentDescription = stringResource(R.string.favorite),
                         tint = if (place.isBookmarked) Color.Red else Color.White
                     )
                 }

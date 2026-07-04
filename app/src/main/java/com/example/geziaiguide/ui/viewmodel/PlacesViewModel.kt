@@ -43,24 +43,27 @@ class PlacesViewModel(private val repository: PlacesRepository) : ViewModel() {
     // თავდაპირველი მონაცემების შევსება, თუ ბაზა ცარიელია
     fun seedDatabase() {
         viewModelScope.launch {
-            // ვიყენებთ first()-ს რომ რეალურად შევამოწმოთ ბაზის მდგომარეობა
-            val currentPlaces = repository.allPlaces.first()
-            if (currentPlaces.isEmpty()) {
-                val dummyPlaces = listOf(
-                    Place(1, "Old Tbilisi", "Tbilisi", "Sulfur baths and narrow streets.", "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800", 4.8, 41.6881, 44.8091),
-                    Place(2, "Gergeti Trinity", "Kazbegi", "Church under Mount Kazbek.", "https://images.unsplash.com/photo-1527269534026-c86f4009eace?auto=format&fit=crop&w=800", 4.9, 42.6625, 44.6201),
-                    Place(3, "Ushguli", "Svaneti", "Highest inhabited village in Europe.", "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800", 5.0, 42.9172, 43.0152),
-                    Place(4, "Batumi Boulevard", "Adjara", "Modern seaside city.", "https://images.unsplash.com/photo-1612371534015-7790b0798e8f?auto=format&fit=crop&w=800", 4.7, 41.6493, 41.6249),
-                    Place(5, "Martvili Canyon", "Samegrelo", "Turquoise water and waterfalls.", "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800", 4.9, 42.4575, 42.3776, type = "Nature"),
-                    Place(6, "Gabriadze Theater", "Tbilisi", "Famous clock tower and marionette theater.", "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800", 4.9, 41.6958, 44.8066, type = "Historical"),
-                    Place(7, "Shavi Lomi", "Tbilisi", "Traditional Georgian food in a cozy yard.", "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800", 4.8, 41.7100, 44.8000, type = "Restaurant")
-                )
-                dummyPlaces.forEach { repository.insertPlace(it) }
+            try {
+                // ვიყენებთ firstOrNull-ს რომ თავიდან ავიცილოთ შესაძლო გაჭედვა
+                val currentPlaces = repository.allPlaces.firstOrNull()
+                if (currentPlaces.isNullOrEmpty()) {
+                    val dummyPlaces = listOf(
+                        Place(1, "Old Tbilisi", "Tbilisi", "Sulfur baths and narrow streets.", "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800", 4.8, 41.6881, 44.8091),
+                        Place(2, "Gergeti Trinity", "Kazbegi", "Church under Mount Kazbek.", "https://images.unsplash.com/photo-1527269534026-c86f4009eace?auto=format&fit=crop&w=800", 4.9, 42.6625, 44.6201),
+                        Place(3, "Ushguli", "Svaneti", "Highest inhabited village in Europe.", "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800", 5.0, 42.9172, 43.0152),
+                        Place(4, "Batumi Boulevard", "Adjara", "Modern seaside city.", "https://images.unsplash.com/photo-1612371534015-7790b0798e8f?auto=format&fit=crop&w=800", 4.7, 41.6493, 41.6249),
+                        Place(5, "Martvili Canyon", "Samegrelo", "Turquoise water and waterfalls.", "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800", 4.9, 42.4575, 42.3776, type = "Nature"),
+                        Place(6, "Gabriadze Theater", "Tbilisi", "Famous clock tower and marionette theater.", "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800", 4.9, 41.6958, 44.8066, type = "Historical"),
+                        Place(7, "Shavi Lomi", "Tbilisi", "Traditional Georgian food in a cozy yard.", "https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800", 4.8, 41.7100, 44.8000, type = "Restaurant")
+                    )
+                    dummyPlaces.forEach { repository.insertPlace(it) }
 
-                // Seed some initial comments
-                addComment(1, "Giorgi L.", "Amazing atmosphere! The sulfur baths are a must.", 5)
-                addComment(1, "Sophie M.", "Loved the narrow streets, so romantic.", 4)
-                addComment(2, "Alex W.", "Breath-taking views, even in the clouds.", 5)
+                    addComment(1, "Giorgi L.", "Amazing atmosphere! The sulfur baths are a must.", 5)
+                    addComment(1, "Sophie M.", "Loved the narrow streets, so romantic.", 4)
+                    addComment(2, "Alex W.", "Breath-taking views, even in the clouds.", 5)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
