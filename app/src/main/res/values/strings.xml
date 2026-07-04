@@ -31,6 +31,9 @@
     <string name="favorite">Favorite</string>
     <string name="edit_profile_desc">Edit Profile</string>
     <string name="profile_picture">Profile Picture</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="georgian">Georgian</string>
     <string name="default_bio">Passionate traveler and mountain lover. Exploring the hidden gems of Georgia one peak at a time. Always looking for the next adventure!</string>
     <string name="default_user_name">Tamar Svanidze</string>
 </resources>

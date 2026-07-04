@@ -25,7 +25,8 @@ fun MainContainer(
     placesViewModel: PlacesViewModel, 
     chatViewModel: ChatViewModel,
     isDarkMode: Boolean,
-    onThemeToggle: () -> Unit
+    onThemeToggle: () -> Unit,
+    onLanguageChange: (String) -> Unit
 ) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -76,6 +77,7 @@ fun MainContainer(
                     viewModel = placesViewModel, 
                     isDarkMode = isDarkMode,
                     onThemeToggle = onThemeToggle,
+                    onLanguageChange = onLanguageChange,
                     onChatClick = {
                         navController.navigate("chat") {
                             launchSingleTop = true

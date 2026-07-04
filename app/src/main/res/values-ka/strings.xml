@@ -31,6 +31,9 @@
     <string name="favorite">ფავორიტი</string>
     <string name="edit_profile_desc">პროფილის რედაქტირება</string>
     <string name="profile_picture">პროფილის სურათი</string>
+    <string name="language">ენა</string>
+    <string name="english">ინგლისური</string>
+    <string name="georgian">ქართული</string>
     <string name="default_bio">მოგზაურობისა და მთების მოყვარული. ვეძებ საქართველოს დამალულ საგანძურს. ყოველთვის მზად ვარ ახალი თავგადასავლებისთვის!</string>
     <string name="default_user_name">თამარ სვანიძე</string>
 </resources>

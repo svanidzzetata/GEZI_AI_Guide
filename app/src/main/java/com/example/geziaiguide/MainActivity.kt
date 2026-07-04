@@ -1,7 +1,9 @@
 package com.example.geziaiguide
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -22,7 +24,7 @@ import com.example.geziaiguide.ui.theme.GeziAIGuideTheme
 import com.example.geziaiguide.ui.viewmodel.ChatViewModel
 import com.example.geziaiguide.ui.viewmodel.PlacesViewModel
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     
     private val database by lazy { AppDatabase.getDatabase(this) }
     private val repository by lazy { PlacesRepository(database.placeDao()) }
@@ -55,7 +57,11 @@ class MainActivity : ComponentActivity() {
                         placesViewModel = placesViewModel, 
                         chatViewModel = chatViewModel,
                         isDarkMode = isDarkMode,
-                        onThemeToggle = { isDarkMode = !isDarkMode }
+                        onThemeToggle = { isDarkMode = !isDarkMode },
+                        onLanguageChange = { langCode ->
+                            val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags(langCode)
+                            AppCompatDelegate.setApplicationLocales(appLocale)
+                        }
                     )
                 }
             }

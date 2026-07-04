@@ -14,10 +14,9 @@ import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,10 +39,12 @@ fun PlacesScreen(
     viewModel: PlacesViewModel, 
     isDarkMode: Boolean,
     onThemeToggle: () -> Unit,
+    onLanguageChange: (String) -> Unit,
     onChatClick: () -> Unit,
     onPlaceClick: (Int) -> Unit
 ) {
     val places by viewModel.placesList.collectAsState()
+    var showLanguageMenu by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -63,6 +64,30 @@ fun PlacesScreen(
                     }
                 },
                 actions = {
+                    Box {
+                        IconButton(onClick = { showLanguageMenu = true }) {
+                            Icon(Icons.Default.Language, contentDescription = stringResource(R.string.language))
+                        }
+                        DropdownMenu(
+                            expanded = showLanguageMenu,
+                            onDismissRequest = { showLanguageMenu = false }
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.english)) },
+                                onClick = { 
+                                    onLanguageChange("en")
+                                    showLanguageMenu = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.georgian)) },
+                                onClick = { 
+                                    onLanguageChange("ka")
+                                    showLanguageMenu = false
+                                }
+                            )
+                        }
+                    }
                     IconButton(onClick = onThemeToggle) {
                         Icon(
                             imageVector = if (isDarkMode) Icons.Default.LightMode else Icons.Default.DarkMode,
